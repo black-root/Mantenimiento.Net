@@ -5,15 +5,17 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MantenimientoRestService.Models;
+using System.Collections;
 
 namespace MantenimientoRestService.Controllers
 {
     public class MarcaController : ApiController
     {
         // GET: api/Marca
-        public IEnumerable<string> Get()
+        public ArrayList Get()
         {
-            return new string[] { "idMarca", "Nombre" };
+            MarketPersistence mp = new MarketPersistence();
+            return mp.findAll();
         }
 
         // GET: api/Marca/5

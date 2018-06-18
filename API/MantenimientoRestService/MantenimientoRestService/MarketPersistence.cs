@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using MantenimientoRestService.Models;
 using MySql.Data;
+using System.Collections;
 
 namespace MantenimientoRestService
 {
@@ -27,14 +28,16 @@ namespace MantenimientoRestService
 
             }
         }
+    
         //Metodo para el rest GET by ID
-        public Marca getMarca(long ID)
+        //si no posee id, poner como nulo el ID
+        public Marca getMarca(Object ID)
         {
 
             Marca m = new Marca();
             MySql.Data.MySqlClient.MySqlDataReader mySqlDataReader = null;
+            String sqlString =sqlString = "SELECT * FROM marca";
 
-            String sqlString = "SELECT * FROM marca WHERE idMarca= " + ID.ToString();
             MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
 
             mySqlDataReader = cmd.ExecuteReader();
@@ -44,37 +47,37 @@ namespace MantenimientoRestService
                 m.idMarca = mySqlDataReader.GetInt32(0);
                 m.nombreMarca = mySqlDataReader.GetString(1);
                 if (!mySqlDataReader.IsDBNull(2))
-                    {
-                        m.descripcion = mySqlDataReader.GetString(2);
-
-                    }
-                    if (!mySqlDataReader.IsDBNull(3))
-                    {
-                        m.email = mySqlDataReader.GetString(3);
-                    }
-                    if (!mySqlDataReader.IsDBNull(4))
-                    {
-                        m.telefono = mySqlDataReader.GetString(4);
-
-                    }
-                    if (!mySqlDataReader.IsDBNull(5))
-                    {  
-                        m.website = mySqlDataReader.GetString(5);
-
-                    }
-                    if (!mySqlDataReader.IsDBNull(0))
-                    {
-                        m.direccion = mySqlDataReader.GetString(6);
-                    }
-                        return m;
-                }
-                else
                 {
-                    return null;
+                    m.descripcion = mySqlDataReader.GetString(2);
                 }
+                if (!mySqlDataReader.IsDBNull(3))
+                {
+                    m.email = mySqlDataReader.GetString(3);
+                }
+                if (!mySqlDataReader.IsDBNull(4))
+                {
+                    m.telefono = mySqlDataReader.GetString(4);
 
+                }
+                if (!mySqlDataReader.IsDBNull(5))
+                {
+                    m.website = mySqlDataReader.GetString(5);
+
+                }
+                if (!mySqlDataReader.IsDBNull(0))
+                {
+                    m.direccion = mySqlDataReader.GetString(6);
+                }
+                return m;
             }
-        
+            else
+            {
+                return null;
+            }
+
+
+        }
+
         //Metodo para el rest POST
         public long saveMarca(Marca marcaToSave)
         {
@@ -88,5 +91,53 @@ namespace MantenimientoRestService
             long id = cmd.LastInsertedId;
             return id;
         }
+
+       
+        public ArrayList findAll()
+        {       
+            ArrayList marcaArray = new ArrayList();
+
+         
+            MySql.Data.MySqlClient.MySqlDataReader mySqlDataReader = null;
+            String sqlString = sqlString = "SELECT * FROM marca";
+      
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
+
+            mySqlDataReader = cmd.ExecuteReader();
+
+            while (mySqlDataReader.Read())
+            {
+                Marca m = new Marca();
+                m.idMarca = mySqlDataReader.GetInt32(0);
+                m.nombreMarca = mySqlDataReader.GetString(1);
+
+                if (!mySqlDataReader.IsDBNull(2))
+                {
+                    m.descripcion = mySqlDataReader.GetString(2);
+                }
+                if (!mySqlDataReader.IsDBNull(3))
+                {
+                    m.email = mySqlDataReader.GetString(3);
+                }
+                if (!mySqlDataReader.IsDBNull(4))
+                {
+                    m.telefono = mySqlDataReader.GetString(4);
+
+                }
+                if (!mySqlDataReader.IsDBNull(5))
+                {
+                    m.website = mySqlDataReader.GetString(5);
+
+                }
+                if (!mySqlDataReader.IsDBNull(0))
+                {
+                    m.direccion = mySqlDataReader.GetString(6);
+                }
+
+                marcaArray.Add(m);
+            }//fin while
+            return marcaArray;
+        }
     }
+
 }
