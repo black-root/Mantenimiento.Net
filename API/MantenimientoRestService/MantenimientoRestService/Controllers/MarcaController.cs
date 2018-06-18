@@ -35,8 +35,24 @@ namespace MantenimientoRestService.Controllers
         }
 
         // PUT: api/Marca/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Put(int id, [FromBody]Marca value)
         {
+            MarketPersistence mp = new MarketPersistence();
+            bool recordExisted = false;
+            recordExisted = mp.updateMarca(id, value);
+
+            HttpResponseMessage response;
+
+            if (recordExisted)
+            {
+                response = Request.CreateResponse(HttpStatusCode.NoContent);
+            }
+            else
+            {
+                response = Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            return response;
+
         }
 
         // DELETE: api/Marca/5

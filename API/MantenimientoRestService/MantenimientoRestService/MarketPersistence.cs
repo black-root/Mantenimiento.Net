@@ -84,7 +84,7 @@ namespace MantenimientoRestService
             String sqlString = "INSERT INTO mantenimiento.marca (idMarca, nombreMarca," +
                 " descripcion, email, telefono, website, direccion) VALUES ('"+ marcaToSave.idMarca+"','"
                 + marcaToSave.nombreMarca + "','" + marcaToSave.descripcion + "','" + marcaToSave.email
-                + "','" + marcaToSave.telefono + "','" + marcaToSave.website + "','" + marcaToSave.direccion + "');";
+                + "','" + marcaToSave.telefono + "','" + marcaToSave.website + "','" + marcaToSave.direccion + "')";
 
             MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
             cmd.ExecuteNonQuery();
@@ -157,6 +157,41 @@ namespace MantenimientoRestService
                 sqlString = "DELETE FROM marca WHERE idMarca = " + ID.ToString();
                 cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
 
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
+        // Si se actuliza con exito retornara un TRUE y si no un FALSE
+        public bool updateMarca(int ID, Marca marcaToSave)
+        {
+
+            MySql.Data.MySqlClient.MySqlDataReader mySqlDataReader = null;
+
+            String sqlString = sqlString = "SELECT * FROM marca WHERE idMarca = " + ID.ToString();
+            MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
+
+            mySqlDataReader = cmd.ExecuteReader();
+
+            if (mySqlDataReader.Read())
+            {
+                mySqlDataReader.Close();
+                //UPDATE mantenimiento.marca SET  nombreMarca = 'asd',
+               // descripcion = 'asdas' , email = 'asd', telefono = 'asda' , website = 'adsas' , direccion = 'adsasd' WHERE idMarca = 8
+
+
+                sqlString = "UPDATE mantenimiento.marca SET  nombreMarca = '"
+                + marcaToSave.nombreMarca + "'," + " descripcion = '" + marcaToSave.descripcion + "', email = '" + marcaToSave.email
+                + "', telefono = '" + marcaToSave.telefono + "', website = '" + marcaToSave.website + "', direccion = '" + marcaToSave.direccion
+                + "' WHERE idMarca = " +ID.ToString();
+
+                cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
                 cmd.ExecuteNonQuery();
                 return true;
             }
