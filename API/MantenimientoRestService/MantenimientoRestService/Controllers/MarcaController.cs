@@ -40,8 +40,22 @@ namespace MantenimientoRestService.Controllers
         }
 
         // DELETE: api/Marca/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
+            MarketPersistence mp = new MarketPersistence();
+            bool recordExisted = false;
+            recordExisted = mp.deleteMarca(id);
+
+            HttpResponseMessage response;
+
+            if (recordExisted){
+                response = Request.CreateResponse(HttpStatusCode.NoContent);
+            }
+            else {
+                response = Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            return response;
+
         }
     }
 }

@@ -139,48 +139,30 @@ namespace MantenimientoRestService
             return marcaArray;
         }
 
-        public Marca deleteMarca(Object ID)
+        public bool deleteMarca(int ID)
         {
 
             Marca m = new Marca();
             MySql.Data.MySqlClient.MySqlDataReader mySqlDataReader = null;
-            String sqlString = sqlString = "SELECT * FROM marca";
 
+            String sqlString = sqlString = "SELECT * FROM marca WHERE idMarca = " + ID.ToString();
             MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
 
             mySqlDataReader = cmd.ExecuteReader();
 
             if (mySqlDataReader.Read())
             {
-                m.idMarca = mySqlDataReader.GetInt32(0);
-                m.nombreMarca = mySqlDataReader.GetString(1);
-                if (!mySqlDataReader.IsDBNull(2))
-                {
-                    m.descripcion = mySqlDataReader.GetString(2);
-                }
-                if (!mySqlDataReader.IsDBNull(3))
-                {
-                    m.email = mySqlDataReader.GetString(3);
-                }
-                if (!mySqlDataReader.IsDBNull(4))
-                {
-                    m.telefono = mySqlDataReader.GetString(4);
+                mySqlDataReader.Close();
 
-                }
-                if (!mySqlDataReader.IsDBNull(5))
-                {
-                    m.website = mySqlDataReader.GetString(5);
+                sqlString = "DELETE FROM marca WHERE idMarca = " + ID.ToString();
+                cmd = new MySql.Data.MySqlClient.MySqlCommand(sqlString, conn);
 
-                }
-                if (!mySqlDataReader.IsDBNull(0))
-                {
-                    m.direccion = mySqlDataReader.GetString(6);
-                }
-                return m;
+                cmd.ExecuteNonQuery();
+                return true;
             }
             else
             {
-                return null;
+                return false;
             }
 
 
