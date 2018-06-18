@@ -86,7 +86,6 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Persistence\MarketPersistence.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MarcaController.cs" />
     <Compile Include="Global.asax.cs">

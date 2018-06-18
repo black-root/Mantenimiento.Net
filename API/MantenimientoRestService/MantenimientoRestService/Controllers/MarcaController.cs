@@ -19,9 +19,8 @@ namespace MantenimientoRestService.Controllers
         // GET: api/Marca/5
         public Marca Get(int id)
         {
-            Marca marca = new Marca();
-            marca.idMarca = id;
-            marca.nombreMarca = "Dell"; 
+            MarketPersistence mp = new MarketPersistence();
+            Marca marca = mp.getMarca(id);
             return marca;
         }
 
