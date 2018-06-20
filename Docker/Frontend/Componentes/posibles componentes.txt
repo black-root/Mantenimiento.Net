@@ -1,0 +1,33 @@
+Secciones/Partes de la aplicacion:
+
+    Clientes:
+        -Crear solicitud (genera numero de ticket)
+        -Seguimiento de ticket
+        -Historial
+
+        Navegacion en clientes:
+            inicio(crear solicitud) | seguimiento | historial | cerrar sesion
+
+    Internos:
+        -consultar solicitudes pendientes 
+        -Dar seguimiento a cada uno (avanzar el estado)
+        -Historial de mantenimientos (filtrado por usuario, equipo o fecha)
+        
+        Navegacion en clientes:
+            inicio(lista de solicitudes pendientes) | mis mantenimientos | historial | cerrar sesion
+    
+    Ambos:
+        -Login de usuario
+
+    
+
+
+Lista de posibles componentes: 
+- Acceso a datos (Fetch)
+- Tabla dinamica X
+- Barra de navegación 100%
+- Barra de busqueda (con filtros) 50%
+- Barra de busqueda de ticket para historial
+- Login de usuarios
+- Formulario para solicitudes
+- Formulario de consulta de seguimiento de tickets 

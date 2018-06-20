@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="module" src="wc-form.js"></script>
+<script src="test.js"></script>
+
+<body>
+<h3>A demonstration of how to access a FORM element</h3>
+<script>
+    findById();
+</script>
+
+<wc-form entidad="fabricantes", titulo="User Data'" >
+    <label>ID Fabricante</label>
+    <input type="number" name="idFabricante" slot="pk">
+    <br>
+    <label>Marca</label>
+    <input type="text" name="nombre">
+    <br>
+    <label>Direccion</label>
+    <input type="text" name="direccion">
+    <br>
+    <label>Email</label>
+    <input type="email" name="correoFabricante">
+    <br>
+    <label>Telefono</label>
+    <input type="text" name="telefono">
+    <br>
+    <label id="lbdescrp">Descripcion</label><br>
+    <textarea  rows="5" cols="40" name="descripcionFabricante"></textarea>
+    <br>
+    <input type="button" value="Crear" id="postButton">
+    <input type="button" value="Actualizar" id="putButton">
+
+</wc-form>
+</body>
+</html>

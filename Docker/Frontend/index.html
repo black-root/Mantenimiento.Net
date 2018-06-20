@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Mentenimiento</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,700,900|Roboto" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+    <script type="module" src="Componentes/Formulario/wc-form.js"></script>
+    <script src="Componentes/wc-navbar/wc-navbar.js"></script>
+</head>
+<body>
+    <wc-navbar usertype='1'></wc-navbar>
+    <!--
+    <div class="tabla">
+        <wc-dinamictb entidad="fabricantes", paginacion="6"></wc-dinamictb>
+    </div>
+    -->
+    <wc-form entidad="solicitud", titulo="Solicitud'" >
+        <label>ID Fabricante</label>
+        <input type="number" name="pk_idSolicitud" slot="pkDisableCount" disabled>
+        <br>
+        <label>Encargado</label>
+        <input type="text" name="nombre" placeholder="Ej: Juan Perez">
+        <br>
+        <label>Email</label>
+        <input type="email" name="correo">
+        <br>
+        <label>Descripcion</label><br>
+        <textarea  rows="5" cols="40" name="descripcion" placeholder="Escriba una breve descripción de los problemas que le está causando el equipo"></textarea>
+        <br>
+        <input type="button" value="Crear" id="postButton">
+    </wc-form>
+
+</body>
+</html>

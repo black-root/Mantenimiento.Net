@@ -1,0 +1,25 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+	border: none;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+}
+input{
+    margin-bottom: 20px;
+    padding: 10px 18px;
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
+    width: 70%;
+}
+#btnbarra{
+    width: 25%;
+    float: right;
+}
+#barratb{
+    width: 150%;
+}
